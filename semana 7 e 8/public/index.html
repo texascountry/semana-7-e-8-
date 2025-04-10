@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css"/>
+  <title>Cinetex</title>
+</head>
+<body>
+  <div class="titulo">CINETEX</div>
+
+  <!-- MANTEMOS SÓ UMA BARRA DE PESQUISA -->
+  <div class="search">
+    <input 
+      type="search"
+      placeholder="Pesquise um filme..." 
+      id="query"
+      class="input"
+      name="searchbar">
+  </div>
+
+  <div class="filmes">
+    <div class="filme">
+      <a href="pages/detalhesAuto.html">
+        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSubmvOnir3OfeefHYU4A3UUs_WWlC_QtlopDrf3Vqj_H1Rnego" alt="O Auto da Compadecida" class="imgborda" width="200">
+      </a>
+      <p>O Auto da Compadecida</p>
+      <button class="fav-btn">⭐ Favorito</button>
+    </div>
+
+    <div class="filme">
+      <a href="pages/detalhesCapitao.html">
+        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSIUfdySawxK4dbASkVb4zNpqEToBFEpHN-fgJciLL1-mnRZwEQ" alt="Capitão América" class="imgborda" width="200">
+      </a>
+      <p>Capitão América: Admirável Mundo</p>
+      <button class="fav-btn">⭐ Favorito</button>
+    </div>
+
+    <div class="filme">
+      <a href="pages/detalhesFlow.html">
+        <img src="https://upload.wikimedia.org/wikipedia/pt/b/b0/Straume.jpg" alt="FLOW" class="imgborda" width="200">
+      </a>
+      <p>FLOW</p>
+      <button class="fav-btn">⭐ Favorito</button>
+    </div>
+  </div>
+
+  <!-- SCRIPT FUNCIONAL -->
+  <script>
+    const searchInput = document.getElementById('query');
+    const cards = document.querySelectorAll('.filme');
+
+    searchInput.addEventListener('input', () => {
+      const searchTerm = searchInput.value.toLowerCase();
+
+      cards.forEach(card => {
+        const title = card.innerText.toLowerCase();
+        card.style.display = title.includes(searchTerm) ? 'block' : 'none';
+      });
+    });
+  </script>
+  <script>
+    const favButtons = document.querySelectorAll('.fav-btn');
+  
+    favButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const parent = button.closest('.filme');
+        const title = parent.getAttribute('data-title');
+  
+        let favorites = JSON.parse(localStorage.getItem('favoritos')) || [];
+  
+        if (!favorites.includes(title)) {
+          favorites.push(title);
+          localStorage.setItem('favoritos', JSON.stringify(favorites));
+          alert(`${title} adicionado aos favoritos!`);
+        } else {
+          alert(`${title} já está nos favoritos!`);
+        }
+      });
+    });
+  </script>
+  
+</body>
+</html>

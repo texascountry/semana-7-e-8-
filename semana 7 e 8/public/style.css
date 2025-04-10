@@ -1,0 +1,36 @@
+body {
+  background: linear-gradient(45deg, #000, #fff);
+  font-family: Arial, sans-serif;
+}
+
+.titulo {
+  font-size: 50px;
+  color: red;
+  text-align: center;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.filmes {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.filme {
+  margin: 10px;
+}
+
+.imgborda {
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+}
+
+.imgborda:hover {
+  transform: scale(1.05);
+}
